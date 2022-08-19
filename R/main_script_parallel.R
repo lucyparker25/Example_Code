@@ -81,6 +81,8 @@ foreach(i = 1:length(geetasks), .export = c("subtiles"), .packages = c("rgee")) 
 
 }
 
+stopCluster(cl)
+
 ###### Step 3
 # download rgee data (might try parallelize this once its running individually)
 
@@ -97,6 +99,8 @@ foreach(j = 1:length(rclonetasks)) %dopar% {
   system(command = rclonetasks[[j]]$command, input = rclonetasks[[j]]$input)
 
 }
+
+stopCluster(cl2)
 
 ###### Step 4
 setwd(project_path)
